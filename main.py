@@ -11,12 +11,20 @@ def add_task():
         file.write(task + "\n")
     print("Task added!")
 
+def list_tasks():
+    with open("tasks.txt", "r") as file:
+        tasks = file.readlines()
+    for index, task in enumerate(tasks):
+        print(f"{index + 1}. {task.strip()}")
+
 def main():
     while True:
         show_menu()
         choice = input("Enter your choice: ")
         if choice == '1':
             add_task()
+        elif choice == '2':
+            list_tasks()
         elif choice == '5':
             break
 
