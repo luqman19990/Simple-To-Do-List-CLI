@@ -17,6 +17,19 @@ def list_tasks():
     for index, task in enumerate(tasks):
         print(f"{index + 1}. {task.strip()}")
 
+def mark_task_completed():
+    list_tasks()
+    task_number = int(input("Enter the task number to mark as completed: "))
+    with open("tasks.txt", "r") as file:
+        tasks = file.readlines()
+    if 0 < task_number <= len(tasks):
+        tasks[task_number - 1] = tasks[task_number - 1].strip() + " [Completed]\n"
+        with open("tasks.txt", "w") as file:
+            file.writelines(tasks)
+        print("Task marked as completed!")
+    else:
+        print("Invalid task number.")
+
 def main():
     while True:
         show_menu()
@@ -25,6 +38,8 @@ def main():
             add_task()
         elif choice == '2':
             list_tasks()
+        elif choice == '3':
+            mark_task_completed()
         elif choice == '5':
             break
 
