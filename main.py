@@ -30,6 +30,19 @@ def mark_task_completed():
     else:
         print("Invalid task number.")
 
+def delete_task():
+    list_tasks()
+    task_number = int(input("Enter the task number to delete: "))
+    with open("tasks.txt", "r") as file:
+        tasks = file.readlines()
+    if 0 < task_number <= len(tasks):
+        tasks.pop(task_number - 1)
+        with open("tasks.txt", "w") as file:
+            file.writelines(tasks)
+        print("Task deleted!")
+    else:
+        print("Invalid task number.")
+
 def main():
     while True:
         show_menu()
@@ -40,6 +53,8 @@ def main():
             list_tasks()
         elif choice == '3':
             mark_task_completed()
+        elif choice == '4':
+            delete_task()
         elif choice == '5':
             break
 
