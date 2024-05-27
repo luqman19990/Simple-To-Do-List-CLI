@@ -57,6 +57,20 @@ def edit_task():
     else:
         print("Invalid task number.")
 
+def prioritize_task():
+    list_tasks()
+    task_number = int(input("Enter the task number to prioritize: "))
+    with open("tasks.txt", "r") as file:
+        tasks = file.readlines()
+    if 0 < task_number <= len(tasks):
+        task = tasks.pop(task_number - 1).strip()
+        tasks.insert(0, task + " [Priority]\n")
+        with open("tasks.txt", "w") as file:
+            file.writelines(tasks)
+        print("Task prioritized!")
+    else:
+        print("Invalid task number.")
+
 def main():
     while True:
         show_menu()
@@ -69,6 +83,8 @@ def main():
             mark_task_completed()
         elif choice == '5':
             edit_task()
+        elif choice == '6':
+            prioritize_task()
         elif choice == '8':
             break
 
