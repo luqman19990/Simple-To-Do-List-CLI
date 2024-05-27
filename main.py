@@ -3,7 +3,10 @@ def show_menu():
     print("2. List Tasks")
     print("3. Mark Task as Completed")
     print("4. Delete Task")
-    print("5. Exit")
+    print("5. Edit Task")
+    print("6. Prioritize Task")
+    print("7. Add Deadline to Task")
+    print("8. Exit")
 
 def add_task():
     task = input("Enter a new task: ")
