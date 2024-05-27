@@ -71,6 +71,20 @@ def prioritize_task():
     else:
         print("Invalid task number.")
 
+def add_deadline():
+    list_tasks()
+    task_number = int(input("Enter the task number to add a deadline: "))
+    with open("tasks.txt", "r") as file:
+        tasks = file.readlines()
+    if 0 < task_number <= len(tasks):
+        deadline = input("Enter the deadline (YYYY-MM-DD): ")
+        tasks[task_number - 1] = tasks[task_number - 1].strip() + f" [Deadline: {deadline}]\n"
+        with open("tasks.txt", "w") as file:
+            file.writelines(tasks)
+        print("Deadline added!")
+    else:
+        print("Invalid task number.")
+
 def main():
     while True:
         show_menu()
@@ -85,6 +99,8 @@ def main():
             edit_task()
         elif choice == '6':
             prioritize_task()
+        elif choice == '7':
+            add_deadline()
         elif choice == '8':
             break
 
