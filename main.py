@@ -17,8 +17,14 @@ def add_task():
 def list_tasks():
     with open("tasks.txt", "r") as file:
         tasks = file.readlines()
+    print("\nPending Tasks:")
     for index, task in enumerate(tasks):
-        print(f"{index + 1}. {task.strip()}")
+        if "[Completed]" not in task:
+            print(f"{index + 1}. {task.strip()}")
+    print("\nCompleted Tasks:")
+    for index, task in enumerate(tasks):
+        if "[Completed]" in task:
+            print(f"{index + 1}. {task.strip()}")
 
 def mark_task_completed():
     list_tasks()
